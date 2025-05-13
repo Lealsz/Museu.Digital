@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Museu Digital</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>Museu Digital</h1>
+    <button id="toggleTheme">🌙 Alternar Tema</button>
+  </header>
+  <main>
+    <input type="text" id="search" placeholder="Buscar obra..." />
+    <section id="galeria" class="galeria"></section>
+  </main>
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span id="closeModal">&times;</span>
+      <img id="modal-img" src="" alt="Obra" />
+      <div class="modal-text">
+        <h2 id="modal-title"></h2>
+        <p id="modal-artist"></p>
+        <p id="modal-year"></p>
+        <p id="modal-style"></p>
+        <p id="modal-desc"></p>
+      </div>
+    </div>
+  </div>
+  <script src="assets/js/script.js"></script>
+</body>
+</html>
