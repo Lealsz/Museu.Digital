@@ -1,35 +1,90 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Museu Digital</title>
-  <link rel="stylesheet" href="assets/css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Museu Digital - Início</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
   <header>
-    <h1>Museu Digital</h1>
-    <button id="toggleTheme">🌙 Alternar Tema</button>
+    <div class="container">
+      <h1>Museu Digital</h1>
+      <nav>
+        <a href="index.html">Início</a>
+        <a href="artistas.html">Artistas</a>
+        <a href="sobre.html">Sobre</a>
+        <a href="obras.html">Obras</a>
+      </nav>
+    </div>
   </header>
-  <main>
-    <input type="text" id="search" placeholder="Buscar obra..." />
-    <section id="galeria" class="galeria"></section>
-  </main>
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <img id="modal-img" src="" alt="Obra" />
-      <div class="modal-text">
-        <h2 id="modal-title"></h2>
-        <p id="modal-artist"></p>
-        <p id="modal-year"></p>
-        <p id="modal-style"></p>
-        <p id="modal-desc"></p>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Bem-vindo ao Museu Digital</h2>
+      <p>Explore as mais icônicas obras de arte de diversos períodos históricos e estilos.</p>
+      <button onclick="document.querySelector('#galeria').scrollIntoView({ behavior: 'smooth' });">Explorar Galeria</button>
+    </div>
+  </section>
+
+  <section class="info">
+    <div class="container">
+      <h3>O que você encontrará aqui?</h3>
+      <ul>
+        <li>🎨 Uma galeria interativa com obras de arte renomadas.</li>
+        <li>🖌️ Biografias dos maiores artistas de todos os tempos.</li>
+        <li>📜 Curiosidades e informações detalhadas sobre cada obra.</li>
+        <li>🧠 Um espaço educativo com contexto histórico e cultural.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="galeria" class="galeria">
+    <div class="container">
+      <h2>Obras em Destaque</h2>
+      <div class="grid">
+        <div class="obra-item" onclick="window.location.href='obra-noite-estrelada.html';">
+          <img src="/assets/img/noitess.jpg" alt="Noite Estrelada" class="zoom-hover"/>
+          <h3>Noite Estrelada</h3>
+          <p>Vincent van Gogh (1889)</p>
+        </div>
+        <div class="obra-item" onclick="window.location.href='obra-o-grito.html';">
+          <img src="/assets/img/ogrito.jpg" alt="O Grito" class="zoom-hover"/>
+          <h3>O Grito</h3>
+          <p>Edvard Munch (1893)</p>
+        </div>
+        <div class="obra-item" onclick="window.location.href='obra-mona-lisa.html';">
+          <img src="/assets/img/mona.jpg" alt="Mona Lisa" class="zoom-hover"/>
+          <h3>Mona Lisa</h3>
+          <p>Leonardo da Vinci (1503)</p>
+        </div>
       </div>
     </div>
-  </div>
-  <script src="assets/js/script.js"></script>
+  </section>
+
+  <section class="tour">
+    <div class="container">
+      <h3>🎧 Visita Guiada</h3>
+      <p>Clique no botão abaixo para iniciar um tour automatizado com narração opcional.</p>
+      <button onclick="iniciarTour()">Iniciar Visita Guiada</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-container">
+      <div class="footer-info">
+        <h3>Coruja</h3>
+        <p><i class="fas fa-envelope"></i> museuonline@gmail.com </p>
+        <p><i class="fas fa-phone-alt"></i> (11) 99570-7588</p>
+        <p><i class="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+      </div>
+    </div>
+    <div class="footer-copy">
+      <p>&copy; 2025 Coruja. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+
+  <script src="/assets/js/script.js "></script>
 </body>
 </html>
