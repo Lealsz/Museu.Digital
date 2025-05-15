@@ -5,9 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Museu Digital - Início</title>
   <link rel="stylesheet" href="assets/css/styles.css">
+  <link rel="manifest" href="manifest.json" />
+<meta name="theme-color" content="#003366" />
 </head>
 <body>
   <header>
+    <div id="login-modal">
+      <div id="login-box">
+        <h2>Bem-vindo ao Museu Digital</h2>
+        <form id="login-form">
+          <input type="text" id="nome" placeholder="Seu nome" required />
+          <input type="number" id="idade" placeholder="Sua idade" min="1" required />
+          <div id="login-error"></div>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+    </div>
     <div class="container">
       <h1>Museu Digital</h1>
       <nav>
@@ -17,13 +30,25 @@
         <a href="obras.html">Obras</a>
       </nav>
     </div>
+     <div class="language-switcher">
+      <button onclick="setLanguage('pt')">🇧🇷</button>
+      <button onclick="setLanguage('en')">🇺🇸</button>
+      <button onclick="setLanguage('es')">🇪🇸</button>
+    </div>
   </header>
+
+  <section class="curiosidade">
+    <div class="container">
+      <h3>🎨 Curiosidade do Dia</h3>
+      <p id="curiosidade-texto">Carregando...</p>
+    </div>
+  </section>
 
   <section class="hero">
     <div class="hero-content">
-      <h2>Bem-vindo ao Museu Digital</h2>
-      <p>Explore as mais icônicas obras de arte de diversos períodos históricos e estilos.</p>
-      <button onclick="document.querySelector('#galeria').scrollIntoView({ behavior: 'smooth' });">Explorar Galeria</button>
+      <h2 data-i18n="bem_vindo">Bem-vindo ao Museu Digital</h2>
+      <p data-i18n="explore">Explore as mais icônicas obras de arte de diversos períodos históricos e estilos.</p>
+      <button data-i18n="explorar_btn" onclick="document.querySelector('#galeria').scrollIntoView({ behavior: 'smooth' });">Explorar Galeria</button>
     </div>
   </section>
 
@@ -42,22 +67,30 @@
   <section id="galeria" class="galeria">
     <div class="container">
       <h2>Obras em Destaque</h2>
-      <div class="grid">
-        <div class="obra-item" onclick="window.location.href='obra-noite-estrelada.html';">
-          <img src="/assets/img/noitess.jpg" alt="Noite Estrelada" class="zoom-hover"/>
-          <h3>Noite Estrelada</h3>
-          <p>Vincent van Gogh (1889)</p>
-        </div>
-        <div class="obra-item" onclick="window.location.href='obra-o-grito.html';">
-          <img src="/assets/img/ogrito.jpg" alt="O Grito" class="zoom-hover"/>
-          <h3>O Grito</h3>
-          <p>Edvard Munch (1893)</p>
-        </div>
-        <div class="obra-item" onclick="window.location.href='obra-mona-lisa.html';">
-          <img src="/assets/img/mona.jpg" alt="Mona Lisa" class="zoom-hover"/>
-          <h3>Mona Lisa</h3>
-          <p>Leonardo da Vinci (1503)</p>
-        </div>
+
+      <div class="filtros">
+        <select id="filtro-artista">
+          <option value="">Todos os artistas</option>
+        </select>
+        <select id="filtro-periodo">
+          <option value="">Todos os períodos</option>
+        </select>
+        <select id="filtro-tecnica">
+          <option value="">Todas as técnicas</option>
+        </select>
+        <select id="filtro-pais">
+          <option value="">Todos os países</option>
+        </select>
+        <select id="ordenacao">
+          <option value="">Ordenar por...</option>
+          <option value="ano">Data</option>
+          <option value="alfabetica">Ordem Alfabética</option>
+          <option value="popularidade">Popularidade</option>
+        </select>
+      </div>
+
+      <div class="grid" id="galeria-obras">
+
       </div>
     </div>
   </section>
@@ -70,6 +103,72 @@
     </div>
   </section>
 
+  <main class="container">
+
+    <!-- Linha do Tempo -->
+    <section id="linha-do-tempo">
+      <h2>Linha do Tempo da História da Arte</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3>Renascimento (séculos XIV - XVII)</h3>
+          <p>Movimento que valorizou a arte clássica, a perspectiva e a técnica realista.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Barroco (século XVII)</h3>
+          <p>Caracterizado por dramaticidade, luz e sombra e emoção intensa.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Impressionismo (século XIX)</h3>
+          <p>Enfatiza a luz e cor com pinceladas rápidas e atmosfera efêmera.</p>
+        </div>
+        <div class="timeline-item">
+          <h3>Modernismo (século XX)</h3>
+          <p>Busca inovação e experimentação com novas técnicas e estilos.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quiz -->
+    <section id="quiz" class="quiz">
+      <h2>Quiz de Arte</h2>
+      <form id="quiz-form">
+        <div class="quiz-question">
+          <p>1. Quem pintou a obra 'Noite Estrelada'?</p>
+          <div class="quiz-options">
+            <label><input type="radio" name="q1" value="Vincent van Gogh" /> Vincent van Gogh</label>
+            <label><input type="radio" name="q1" value="Leonardo da Vinci" /> Leonardo da Vinci</label>
+            <label><input type="radio" name="q1" value="Pablo Picasso" /> Pablo Picasso</label>
+          </div>
+        </div>
+        <div class="quiz-question">
+          <p>2. Qual movimento artístico é conhecido pelo uso do chiaroscuro?</p>
+          <div class="quiz-options">
+            <label><input type="radio" name="q2" value="Barroco" /> Barroco</label>
+            <label><input type="radio" name="q2" value="Impressionismo" /> Impressionismo</label>
+            <label><input type="radio" name="q2" value="Cubismo" /> Cubismo</label>
+          </div>
+        </div>
+        <div class="quiz-question">
+          <p>3. Qual artista é famoso por seus retratos da Mona Lisa?</p>
+          <div class="quiz-options">
+            <label><input type="radio" name="q3" value="Leonardo da Vinci" /> Leonardo da Vinci</label>
+            <label><input type="radio" name="q3" value="Edvard Munch" /> Edvard Munch</label>
+            <label><input type="radio" name="q3" value="Salvador Dalí" /> Salvador Dalí</label>
+          </div>
+        </div>
+        <button type="submit" id="submit-quiz">Enviar Respostas</button>
+      </form>
+      <div id="quiz-result" class="quiz-result"></div>
+    </section>
+
+    <!-- Glossário -->
+    <section id="glossario" class="glossario">
+      <h2>Glossário de Termos Artísticos</h2>
+      <input type="text" id="glossario-busca" placeholder="Buscar termo..." />
+      <ul id="glossario-lista" class="glossario-list"></ul>
+    </section>
+
+  </main>
   <footer>
     <div class="footer-container">
       <div class="footer-info">
@@ -84,7 +183,7 @@
     </div>
   </footer>
 
-
-  <script src="/assets/js/script.js "></script>
+  <script src="/assets/js/script.js"></script>
+  <script src="assets/js/lang.js"></script>
 </body>
 </html>

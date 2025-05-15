@@ -66,3 +66,157 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(element);
   });
 });
+const curiosidades = [
+  "Van Gogh vendeu apenas uma pintura em vida: 'O Vinhedo Vermelho'.",
+  "A Mona Lisa não tem sobrancelhas — isso era moda na época renascentista.",
+  "O 'Grito' de Edvard Munch tem quatro versões diferentes.",
+  "Leonardo da Vinci levou cerca de 4 anos para terminar a Mona Lisa.",
+  "Picasso produziu cerca de 50 mil obras durante sua vida.",
+  "O quadro 'Noite Estrelada' foi pintado de dentro de um asilo.",
+  "Michelangelo escreveu poemas além de pintar e esculpir.",
+  "Salvador Dalí dizia que era reencarnação de seu irmão morto com o mesmo nome.",
+  "A técnica do sfumato usada por Da Vinci é o segredo do sorriso da Mona Lisa.",
+  "As cores vibrantes de Van Gogh surgem do uso expressivo do pós-impressionismo."
+];
+
+function mostrarCuriosidade() {
+  const index = Math.floor(Math.random() * curiosidades.length);
+  document.getElementById("curiosidade-texto").textContent = curiosidades[index];
+}
+
+document.addEventListener("DOMContentLoaded", mostrarCuriosidade);
+document.getElementById("quiz-form").addEventListener("submit", function (e) {
+  e.preventDefault();
+  let score = 0;
+
+  const respostas = {
+    q1: "Vincent van Gogh",
+    q2: "Barroco",
+    q3: "Leonardo da Vinci"
+  };
+
+  for (const [key, correctAnswer] of Object.entries(respostas)) {
+    const selected = document.querySelector(`input[name="${key}"]:checked`);
+    if (selected && selected.value === correctAnswer) {
+      score++;
+    }
+  }
+
+  const total = Object.keys(respostas).length;
+  const resultDiv = document.getElementById("quiz-result");
+  resultDiv.textContent = `Você acertou ${score} de ${total} perguntas.`;
+});
+
+// Glossário JS
+const termos = [
+  { termo: "Chiaroscuro", definicao: "Técnica que utiliza o contraste forte entre luz e sombra." },
+  { termo: "Sfumato", definicao: "Técnica usada para suavizar transições de cor e luz." },
+  { termo: "Cubismo", definicao: "Movimento artístico que fragmenta objetos em formas geométricas." },
+  { termo: "Impressionismo", definicao: "Estilo que captura efeitos da luz e da cor em pinceladas rápidas." },
+  { termo: "Barroco", definicao: "Estilo artístico marcado pela dramaticidade e contraste de luz." }
+];
+
+const listaGlossario = document.getElementById("glossario-lista");
+const inputBusca = document.getElementById("glossario-busca");
+
+function mostrarTermos(filtro = "") {
+  listaGlossario.innerHTML = "";
+  const termosFiltrados = termos.filter(t => t.termo.toLowerCase().includes(filtro.toLowerCase()));
+  termosFiltrados.forEach(({ termo, definicao }) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong>${termo}</strong>: ${definicao}`;
+    listaGlossario.appendChild(li);
+  });
+}
+
+inputBusca.addEventListener("input", (e) => {
+  mostrarTermos(e.target.value);
+});
+
+// Mostrar todos os termos inicialmente
+mostrarTermos();
+
+// Registro do Service Worker
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker registrado com sucesso:', reg))
+      .catch(err => console.log('Falha ao registrar SW:', err));
+  });
+}
+
+// Prompt para instalação PWA
+let deferredPrompt;
+const btnInstall = document.createElement('button');
+btnInstall.textContent = '📱 Instalar App';
+btnInstall.style.position = 'fixed';
+btnInstall.style.bottom = '20px';
+btnInstall.style.right = '20px';
+btnInstall.style.padding = '12px 20px';
+btnInstall.style.backgroundColor = '#003366';
+btnInstall.style.color = '#fff';
+btnInstall.style.border = 'none';
+btnInstall.style.borderRadius = '8px';
+btnInstall.style.cursor = 'pointer';
+btnInstall.style.display = 'none';
+document.body.appendChild(btnInstall);
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  btnInstall.style.display = 'block';
+});
+
+btnInstall.addEventListener('click', async () => {
+  btnInstall.style.display = 'none';
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const choiceResult = await deferredPrompt.userChoice;
+    if (choiceResult.outcome === 'accepted') {
+      console.log('Usuário aceitou a instalação');
+    } else {
+      console.log('Usuário rejeitou a instalação');
+    }
+    deferredPrompt = null;
+  }
+});
+
+// Função para vibração leve ao clicar em botões no celular
+document.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (navigator.vibrate) {
+      navigator.vibrate(50);
+    }
+  });
+});
+const loginModal = document.getElementById('login-modal');
+    const loginForm = document.getElementById('login-form');
+    const loginError = document.getElementById('login-error');
+
+    // Checar se usuário já entrou antes (localStorage)
+    if(localStorage.getItem('usuarioNome') && localStorage.getItem('usuarioIdade')){
+      loginModal.classList.add('hidden'); // Oculta login se já está salvo
+    }
+
+    loginForm.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const idade = parseInt(document.getElementById('idade').value);
+
+      if(nome === ''){
+        loginError.textContent = 'Por favor, insira seu nome.';
+        return;
+      }
+      if(isNaN(idade) || idade < 1){
+        loginError.textContent = 'Por favor, insira uma idade válida.';
+        return;
+      }
+
+      // Salvar no localStorage
+      localStorage.setItem('usuarioNome', nome);
+      localStorage.setItem('usuarioIdade', idade);
+
+      // Ocultar modal e liberar conteúdo
+      loginModal.classList.add('hidden');
+    });

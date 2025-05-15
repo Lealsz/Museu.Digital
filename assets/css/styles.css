@@ -1,4 +1,3 @@
-/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -46,6 +45,19 @@ nav a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1em;
+}
+
+.language-switcher {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.language-switcher button {
+  background: none;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 8px;
 }
 
 .hero {
@@ -283,4 +295,186 @@ footer {
     font-size: 0.9rem;
     padding: 0.6em 1em;
   }
+}
+
+.curiosidade {
+  background-color: #f0f0f8;
+  padding: 30px 0;
+  text-align: center;
+  margin-top: 40px;
+}
+.curiosidade h3 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+.curiosidade p {
+  font-size: 1.1em;
+  font-style: italic;
+  color: #333;
+}
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+h2, h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  color: #003366;
+}
+/* Linha do tempo */
+.timeline {
+  position: relative;
+  margin: 30px 0;
+  padding-left: 40px;
+  border-left: 3px solid #003366;
+}
+.timeline-item {
+  margin-bottom: 20px;
+  position: relative;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 5px;
+  width: 18px;
+  height: 18px;
+  background-color: #003366;
+  border-radius: 50%;
+}
+/* Quiz */
+.quiz {
+  margin: 40px 0;
+}
+.quiz-question {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.quiz-options label {
+  display: block;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+button#submit-quiz {
+  background-color: #003366;
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+button#submit-quiz:hover {
+  background-color: #0055aa;
+}
+.quiz-result {
+  margin-top: 15px;
+  font-weight: bold;
+  color: #007700;
+}
+/* Glossário */
+.glossario {
+  margin: 40px 0;
+}
+.glossario input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #003366;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+.glossario-list {
+  list-style: none;
+  padding: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.glossario-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.glossario-list li:last-child {
+  border-bottom: none;
+}
+
+/* Responsividade básica */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+  header nav a {
+    display: block;
+    padding: 10px 0;
+  }
+  .container {
+    padding: 10px;
+  }
+  .galeria .grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
+#login-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+#login-modal.hidden {
+  display: none;
+}
+#login-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 320px;
+  width: 90%;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+#login-box h2 {
+  margin-bottom: 20px;
+  color: #003366;
+}
+#login-box input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1rem;
+  border: 1.5px solid #003366;
+  border-radius: 6px;
+}
+#login-box button {
+  width: 100%;
+  background: #003366;
+  color: white;
+  border: none;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease;
+}
+#login-box button:hover {
+  background: #00509e;
+}
+#login-error {
+  color: red;
+  margin-top: 8px;
+  font-size: 0.9rem;
+  height: 20px;
 }
